@@ -1,23 +1,36 @@
 books = {"B1": "Python", "B2": "AI", "B3": "DBMS", "B4": "Networks"}
 members = ["Ravi", "Sita", "Amit"]
-issued = {"B1": "Ravi", "B3": "Sita"}          # facts: Issued(book, member)
-# predicates
+issued = {"B1": "Ravi", "B3": "Sita"}
+
+
 def Book(b):
     return b in books
+
+
 def Member(m):
     return m in members
+
+
 def Issued(b, m):
     return issued.get(b) == m
+
+
 def Available(b):
     return Book(b) and b not in issued
-def CanIssue(m, b):                              # rule: Member(m) and Available(b)
+
+
+def CanIssue(m, b):
     return Member(m) and Available(b)
+
+
 def issue(m, b):
     if CanIssue(m, b):
         issued[b] = m
         print(f"{b} ({books[b]}) issued to {m}")
     else:
         print(f"Cannot issue {b} to {m}")
+
+
 print("FACTS")
 print("Books   :", books)
 print("Members :", members)

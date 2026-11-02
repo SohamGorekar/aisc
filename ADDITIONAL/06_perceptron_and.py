@@ -1,10 +1,15 @@
 inputs = [(0, 0), (0, 1), (1, 0), (1, 1)]
 targets = [0, 0, 0, 1]
 w1 = w2 = bias = 0
-lr = 1
+lr = float(input("Enter the learning rate: "))
+epochs = int(input("Enter the maximum number of epochs: "))
+
+
 def output(x1, x2):
     return 1 if w1 * x1 + w2 * x2 + bias > 0 else 0
-for epoch in range(1, 11):
+
+
+for epoch in range(1, epochs + 1):
     errors = 0
     for (x1, x2), t in zip(inputs, targets):
         e = t - output(x1, x2)

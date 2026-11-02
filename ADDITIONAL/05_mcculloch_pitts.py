@@ -1,7 +1,21 @@
-inputs = [(0, 0), (0, 1), (1, 0), (1, 1)]
+values = list(
+    map(
+        int,
+        input("Enter x1 and x2 values separated by spaces: ").split(),
+    )
+)
+
+if len(values) != 2 or any(value not in (0, 1) for value in values):
+    raise SystemExit("Enter exactly two binary values: 0 or 1.")
+
+inputs = [tuple(values)]
+
+
 def mp_neuron(x1, x2, w1, w2, theta):
     net = x1 * w1 + x2 * w2
     return net, 1 if net >= theta else 0
+
+
 for gate, theta in (("AND", 2), ("OR", 1)):
     print(f"\n{gate} gate (w1 = w2 = 1, threshold = {theta})")
     print("x1  x2  net  y")

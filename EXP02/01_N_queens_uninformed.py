@@ -1,4 +1,7 @@
-N = 8
+N = int(input("Enter the number of queens: "))
+
+if N < 1:
+    raise SystemExit("The number of queens must be at least 1.")
 
 board = [["." for i in range(N)] for j in range(N)]
 

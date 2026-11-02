@@ -1,7 +1,13 @@
 import math
-leaves = [3, 5, 6, 9, 1, 2, 0, -1]
+
+leaves = list(map(int, input("Enter 8 leaf values separated by spaces: ").split()))
+
+if len(leaves) != 8:
+    raise SystemExit("Enter exactly 8 leaf values.")
 DEPTH = 3
 checked = 0
+
+
 def alphabeta(depth, index, is_max, alpha, beta):
     global checked
     if depth == DEPTH:
@@ -19,9 +25,13 @@ def alphabeta(depth, index, is_max, alpha, beta):
         if beta <= alpha:
             if k == 0:
                 kind = "MAX" if is_max else "MIN"
-                print(f"{'  ' * depth}Pruned at {kind} node: alpha={alpha}, beta={beta}")
+                print(
+                    f"{'  ' * depth}Pruned at {kind} node: alpha={alpha}, beta={beta}"
+                )
             break
     return best
+
+
 print("Leaf values:", leaves, "\n")
 best = alphabeta(0, 0, True, -math.inf, math.inf)
 print("\nOptimal value at the root (MAX player):", best)

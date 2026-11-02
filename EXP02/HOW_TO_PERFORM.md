@@ -1,39 +1,56 @@
-# EXP02
+# EXP02 - Uninformed Search
 
-## How to perform
+## Ubuntu setup
 
-1. Open **Terminal** and change to this folder:
+Open Terminal and install Python:
 
-   ```bash
-   cd /path/to/pracs/EXP02
-   ```
-2. Install Python and the dependencies once:
+```bash
+sudo apt update
+sudo apt install -y python3 python3-pip python3-venv
+cd /path/to/aisc/EXP02
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
-   ```bash
-   sudo apt update
-   sudo apt install -y python3 python3-pip python3-venv
-   python3 -m venv .venv
-   source .venv/bin/activate
-   python3 -m pip install numpy matplotlib scikit-learn
-   ```
-
-3. Run any program, for example:
-
-   ```bash
-   python3 01_fifteen_puzzle_astar.py
-   ```
-
-Use Python 3.10 or newer.
+These programs use only the Python standard library. Run each program with
+`python3` from this folder.
 
 ## Programs
 
-- `01_fifteen_puzzle_astar.py` - **15-Puzzle using A***: Use Manhattan distance with A* to solve a 15-puzzle.
-- `02_water_jug_astar.py` - **Water Jug using A***: Measure 2 litres with 4-litre and 3-litre jugs using A*.
-- `03_eight_queens_astar.py` - **8-Queen using A***: Use A* to find a valid 8-Queen placement.
+### `01_N_queens_uninformed.py`
 
-## Practical procedure
+Run:
 
-1. State the aim and explain the algorithm or learning rule.
-2. Explain the important inputs, parameters and expected output.
-3. Execute the selected file and show the result.
-4. For a changed input, update the constants near the top of the file and run it again.
+```bash
+python 01_N_queens_uninformed.py
+```
+
+Input:
+
+```text
+Enter the number of queens: 8
+```
+
+The program prints one valid N-Queens board. Enter a positive integer.
+
+### `02_tsp_dfs.py`
+
+Run:
+
+```bash
+python 02_tsp_dfs.py
+```
+
+Enter the number of cities, followed by one complete cost-matrix row per
+prompt. For four cities, enter:
+
+```text
+Enter the number of cities: 4
+Row 1: 0 10 15 20
+Row 2: 10 0 35 25
+Row 3: 15 35 0 30
+Row 4: 20 25 30 0
+```
+
+The program lists every DFS tour and prints the minimum-cost tour. The
+starting city is always `A`.

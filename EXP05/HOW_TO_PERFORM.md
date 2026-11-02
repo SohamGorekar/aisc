@@ -1,37 +1,83 @@
-# EXP05
+# EXP05 - Predicate Logic
 
-## How to perform
+## Ubuntu setup
 
-1. Open **Terminal** and change to this folder:
+Open Terminal and install Python:
 
-   ```bash
-   cd /path/to/pracs/EXP05
-   ```
-2. Install Python and the dependencies once:
+```bash
+sudo apt update
+sudo apt install -y python3 python3-pip python3-venv
+cd /path/to/aisc/EXP05
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
-   ```bash
-   sudo apt update
-   sudo apt install -y python3 python3-pip python3-venv
-   python3 -m venv .venv
-   source .venv/bin/activate
-   python3 -m pip install numpy matplotlib scikit-learn
-   ```
-
-3. Run the program:
-
-   ```bash
-   python3 01_kohonen_som.py
-   ```
-
-Use Python 3.10 or newer.
+These programs use only the Python standard library. Run each program with
+`python3` from this folder.
 
 ## Programs
 
-- `01_kohonen_som.py` - **Kohonen Self-Organizing Map**: Train two SOM cluster units on four input vectors.
+### `01_predicate_logic_library.py`
 
-## Practical procedure
+Run:
 
-1. State the aim and explain the algorithm or learning rule.
-2. Explain the important inputs, parameters and expected output.
-3. Execute the selected file and show the result.
-4. For a changed input, update the constants near the top of the file and run it again.
+```bash
+python 01_predicate_logic_library.py
+```
+
+This program demonstrates library predicates and queries using its built-in
+knowledge base. It does not request runtime input.
+
+### `AISC_EXP5.PY`
+
+Run:
+
+```bash
+python AISC_EXP5.PY
+```
+
+Use the menu:
+
+```text
+1 Add Member
+2 Add Book
+3 Borrow Book
+4 Return Book
+5 Check Book Availability
+6 Find Book Author
+7 Show Borrowed Books
+8 FOL Query
+9 Display Knowledge Base
+10 Expire Membership
+11 Run Inference
+12 Exit
+```
+
+Names and book titles are entered when the selected operation asks for them.
+For an FOL query, enter a predicate such as `Member`, `Book`, `Available`,
+`Borrower`, `MembershipExpired`, or `BorrowingLimitExceeded`, followed by its
+value.
+
+### `AISC_EXC5.1.PY`
+
+Run:
+
+```bash
+python AISC_EXC5.1.PY
+```
+
+Use the displayed library menu and enter names, titles, authors, predicates,
+and values as requested. This is the extended library exercise.
+
+### `AISC_EXC5.2.PY`
+
+Run:
+
+```bash
+python AISC_EXC5.2.PY
+```
+
+Use the hospital menu. When adding or updating a patient, enter `yes` or
+`no` for fever, cough, and insurance, and enter a numeric age. FOL queries
+include `Patient`, `Fever`, `Cough`, `Insurance`, `SeniorCitizen`, `Flu`, and
+`PriorityTreatment`.

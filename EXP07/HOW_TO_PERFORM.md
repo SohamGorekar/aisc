@@ -1,37 +1,65 @@
-# EXP07
+# EXP07 - MLP Supervised Learning
 
-## How to perform
+## Ubuntu setup
 
-1. Open **Terminal** and change to this folder:
+Open Terminal and install Python and the required packages:
 
-   ```bash
-   cd /path/to/pracs/EXP07
-   ```
-2. Install Python and the dependencies once:
+```bash
+sudo apt update
+sudo apt install -y python3 python3-pip python3-venv
+cd /path/to/aisc/EXP07
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install numpy pandas scikit-learn
+```
 
-   ```bash
-   sudo apt update
-   sudo apt install -y python3 python3-pip python3-venv
-   python3 -m venv .venv
-   source .venv/bin/activate
-   python3 -m pip install numpy matplotlib scikit-learn
-   ```
+## `01_mlp_xor.py`
 
-3. Run the program:
+Run:
 
-   ```bash
-   python3 01_ebpta_student_performance.py
-   ```
+```bash
+python 01_mlp_xor.py
+```
 
-Use Python 3.10 or newer.
+The XOR training data is part of the experiment, so this program does not
+request input. It prints actual and predicted outputs.
 
-## Programs
+## `02_mlp_student_pass_fail.py`
 
-- `01_ebpta_student_performance.py` - **EBPTA Student Performance Prediction**: Train a 2-3-1 sigmoid network to predict Pass or Fail.
+Run:
 
-## Practical procedure
+```bash
+python 02_mlp_student_pass_fail.py
+```
 
-1. State the aim and explain the algorithm or learning rule.
-2. Explain the important inputs, parameters and expected output.
-3. Execute the selected file and show the result.
-4. For a changed input, update the constants near the top of the file and run it again.
+Enter hours studied:
+
+```text
+Enter the number of hours studied: 6
+```
+
+The program prints the training accuracy and predicts `Pass` or `Fail`.
+
+## `03_mlp_iris.py`
+
+Place `iris.csv` in this folder with columns:
+
+```text
+SepalLength,SepalWidth,PetalLength,PetalWidth,Species
+```
+
+Run:
+
+```bash
+python 03_mlp_iris.py
+```
+
+After training, enter the number of flowers and four measurements per flower:
+
+```text
+Enter the number of flowers to predict: 2
+Enter SepalLength SepalWidth PetalLength PetalWidth for flower 1: 5.1 3.5 1.4 0.2
+Enter SepalLength SepalWidth PetalLength PetalWidth for flower 2: 6.5 3.0 5.5 1.8
+```
+
+The program prints test accuracy, a confusion matrix, and predictions.

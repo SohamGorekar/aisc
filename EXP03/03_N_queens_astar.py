@@ -1,32 +1,18 @@
-# ------------------------------------------------------------
-# Program : N-Queen Problem using A* Search Algorithm
-# Example : 4-Queen Problem
-# ------------------------------------------------------------
-
 import heapq
 
-# ------------------------------------------------------------
-# Node Class
-# ------------------------------------------------------------
+
 class Node:
 
     def __init__(self, board, row):
-        self.board = board      # Queen positions
-        self.row = row          # Number of queens placed
+        self.board = board
+        self.row = row
 
-        # Cost from start
         self.g = row
 
-        # Heuristic value
         self.h = self.heuristic()
 
-        # Evaluation function
         self.f = self.g + self.h
 
-    # --------------------------------------------------------
-    # Heuristic Function
-    # Counts attacking queen pairs
-    # --------------------------------------------------------
     def heuristic(self):
 
         attacks = 0
@@ -41,33 +27,25 @@ class Node:
                 if self.board[j] == -1:
                     continue
 
-                # Same column
                 if self.board[i] == self.board[j]:
                     attacks += 1
 
-                # Same diagonal
                 elif abs(i - j) == abs(self.board[i] - self.board[j]):
                     attacks += 1
 
         return attacks
 
-    # Priority Queue comparison
     def __lt__(self, other):
         return self.f < other.f
 
 
-# ------------------------------------------------------------
-# Generate Child Nodes
-# ------------------------------------------------------------
 def generate_children(node, N):
 
     children = []
 
-    # All queens placed
     if node.row == N:
         return children
 
-    # Try placing queen in every column
     for col in range(N):
 
         new_board = node.board[:]
@@ -80,9 +58,6 @@ def generate_children(node, N):
     return children
 
 
-# ------------------------------------------------------------
-# Print Chess Board
-# ------------------------------------------------------------
 def print_board(board):
 
     N = len(board)
@@ -99,12 +74,8 @@ def print_board(board):
         print()
 
 
-# ------------------------------------------------------------
-# A* Search Algorithm
-# ------------------------------------------------------------
 def astar_nqueen(N):
 
-    # Initial board
     initial_board = [-1] * N
 
     open_list = []
@@ -117,7 +88,6 @@ def astar_nqueen(N):
 
         current = heapq.heappop(open_list)
 
-        # Goal Test
         if current.row == N and current.h == 0:
 
             print("\nSolution Found!\n")
@@ -136,7 +106,6 @@ def astar_nqueen(N):
 
             return
 
-        # Expand node
         children = generate_children(current, N)
 
         for child in children:
@@ -146,11 +115,10 @@ def astar_nqueen(N):
     print("No Solution Found")
 
 
-# ------------------------------------------------------------
-# Main Program
-# ------------------------------------------------------------
+N = int(input("Enter the number of queens: "))
 
-N = 4
+if N < 1:
+    raise SystemExit("The number of queens must be at least 1.")
 
 print("Solving", N, "- Queen Problem using A* Search\n")
 

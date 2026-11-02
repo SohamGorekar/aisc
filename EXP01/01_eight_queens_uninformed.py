@@ -1,26 +1,54 @@
 N = 8
+
+board = [["." for i in range(N)] for j in range(N)]
+
+
 def is_safe(board, row, col):
-    # check column and both diagonals against queens already placed
-    for r in range(row):
-        if board[r] == col or abs(board[r] - col) == abs(r - row):
+    for i in range(col):
+        if board[row][i] == "Q":
             return False
+
+    i = row
+    j = col
+
+    while i >= 0 and j >= 0:
+        if board[i][j] == "Q":
+            return False
+        i -= 1
+        j -= 1
+
+    i = row
+    j = col
+
+    while i < N and j >= 0:
+        if board[i][j] == "Q":
+            return False
+        i += 1
+        j -= 1
+
     return True
-def solve(board, row):
-    if row == N:
+
+
+def solve(board, col):
+    if col >= N:
         return True
-    for col in range(N):
+
+    for row in range(N):
         if is_safe(board, row, col):
-            board[row] = col
-            if solve(board, row + 1):
+            board[row][col] = "Q"
+
+            if solve(board, col + 1):
                 return True
-            board[row] = -1
+
+            board[row][col] = "."
+
     return False
-board = [-1] * N
+
+
 if solve(board, 0):
-    print("One valid solution of the 8-Queen problem")
-    print("Queen positions (row, col):", [(r, board[r]) for r in range(N)])
-    print()
-    for r in range(N):
-        print(" ".join("Q" if board[r] == c else "." for c in range(N)))
+    print("Solution Found:\n")
+
+    for row in board:
+        print(" ".join(row))
 else:
-    print("No solution exists")
+    print("No Solution Exists")
